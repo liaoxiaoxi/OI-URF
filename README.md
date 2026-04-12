@@ -12,16 +12,16 @@ By Xiaoxi Liao, Kai Wang*, Bailing Wang, Hongke Zhang
 ## Requirements
 
 - Python 3.8
-- torch 1.12.1
-- torchvision 0.13.1
-- opencv-python 4.6.0.66
-- kornia 0.5.11
-- numpy 1.21.5
-- Pillow
-- tqdm
-- matplotlib
+- torch 2.1.2+cu118
+- torchvision 0.16.2+cu118
+- opencv-python 4.13.0.92
+- kornia 0.6.3
+- numpy 1.26.4
+- Pillow 10.3.0
+- tqdm 4.64.1
+- matplotlib 3.8.2
 
 You can install the main dependencies with:
 
 ```bash
-pip install torch==1.12.1 torchvision==0.13.1 opencv-python==4.6.0.66 kornia==0.5.11 numpy==1.21.5 pillow tqdm matplotlib
+pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 opencv-python==4.13.0.92 kornia==0.6.3 numpy==1.26.4 pillow tqdm matplotlib
