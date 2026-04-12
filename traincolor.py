@@ -26,7 +26,7 @@ import cv2
 # =========================================================
 # Basic setup
 # =========================================================
-model_name = "DenoiseReg-OBRT-CrossGate-RegFirst-C2RFColorStyle"
+model_name = "OI-URF"
 device_id = "0"
 os.environ["CUDA_LAUNCH_BLOCKING"] = device_id
 device = torch.device("cuda:" + device_id if torch.cuda.is_available() else "cpu")
@@ -348,17 +348,17 @@ optimizer_FE = torch.optim.Adam(
 )
 
 optimizer_OBRT = torch.optim.Adam(OBRT.parameters(), lr=8e-4)
-optimizer_FusionModule = torch.optim.Adam(fusion_module.parameters(), lr=2e-4)
+optimizer_Fusion = torch.optim.Adam(Fusion.parameters(), lr=2e-4)
 
 if RESUME_PATH and os.path.exists(RESUME_PATH):
     print(f"\nLoading checkpoint from: {RESUME_PATH}")
     ckpt = torch.load(RESUME_PATH, map_location=device)
 
-    FE.load_state_dict(ckpt["bfe"])
+    FE.load_state_dict(ckpt["FE"])
     ir_MSFE.load_state_dict(ckpt["ir_MSFE"])
     vis_MSFE.load_state_dict(ckpt["vis_MSFE"])
     OBRT.load_state_dict(ckpt["obrt"])
-    fusion_module.load_state_dict(ckpt["fusion_block"])
+    Fusion.load_state_dict(ckpt["fusion"])
     FD.load_state_dict(ckpt["FD"])
 
     if "denoise_reg" in ckpt:
@@ -455,7 +455,7 @@ def set_stage(epoch: int):
         set_requires_grad(vis_MSFE, False)
         set_requires_grad(ir_MSFE, False)
         set_requires_grad(FD, False)
-        set_requires_grad(fusion_module, False)
+        set_requires_grad(Fusion, False)
         set_requires_grad(OBRT, False)
         set_requires_grad(denoise_reg, True)
     else:
@@ -464,7 +464,7 @@ def set_stage(epoch: int):
         set_requires_grad(ir_MSFE, True)
         set_requires_grad(FD, True)
         set_requires_grad(OBRT, True)
-        set_requires_grad(fusion_module, True)
+        set_requires_grad(Fusion, True)
         set_requires_grad(denoise_reg, True)
 
 def cosine_loss(a, b, eps=1e-6):
@@ -584,7 +584,7 @@ def train(epoch: int):
         loss_cm = 0.5 * cosine_loss(F_fix, F_mov_aligned.detach()) + 0.5 * cosine_loss(F_fix.detach(), F_mov_aligned)
 
         ird_fe_aligned = F.grid_sample(ird_fe, grid_pred, align_corners=True, mode="bilinear", padding_mode="border")
-        fusion_image_sample = fusion_module(vis_fe, ird_fe_aligned)
+        fusion_image_sample = Fusion(vis_fe, ird_fe_aligned)
 
         # C2RF-style color restoration (not used in loss, only for output)
         fusion_rgb_sample = ycbcr_to_rgb_tensor(fusion_image_sample.clamp(0, 1), vis_c1, vis_c2)
@@ -624,7 +624,7 @@ def train(epoch: int):
         optimizer_reg.zero_grad()
         optimizer_OBRT.zero_grad()
         optimizer_FE.zero_grad()
-        optimizer_FusionModule.zero_grad()
+        optimizer_Fusion.zero_grad()
 
         loss.backward()
         optimizer_reg.step()
@@ -632,7 +632,7 @@ def train(epoch: int):
         if epoch >= REG_FIRST_EPOCHS:
             optimizer_OBRT.step()
             optimizer_FE.step()
-            optimizer_FusionModule.step()
+            optimizer_Fusion.step()
 
 
         # -------------------------------------------------
@@ -793,11 +793,11 @@ def train(epoch: int):
         if ((epoch + 1) == args.args.Epoch and (step + 1) % iter_num == 0) or (
                 epoch % args.args.save_model_num == 0 and (step + 1) % iter_num == 0):
             ckpts = {
-                "bfe": FE.state_dict(),
+                "FE": FE.state_dict(),
                 "ir_MSFE": ir_MSFE.state_dict(),
                 "vis_MSFE": vis_MSFE.state_dict(),
                 "obrt": OBRT.state_dict(),
-                "fusion_block": fusion_module.state_dict(),
+                "fusion": Fusion.state_dict(),
                 "FD": FD.state_dict(),
                 "denoise_reg": denoise_reg.state_dict(),
             }
@@ -821,7 +821,7 @@ if __name__ == "__main__":
     ir_MSFE.train()
     FD.train()
     OBRT.train()
-    fusion_module.train()
+    Fusion.train()
     denoise_reg.train()
     ImageDeformation.train()
 
