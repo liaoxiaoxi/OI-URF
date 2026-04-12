@@ -9,3 +9,19 @@ By Xiaoxi Liao, Kai Wang*, Bailing Wang, Hongke Zhang
 
 <img width="1565" height="372" alt="MGTI - 副本" src="https://github.com/user-attachments/assets/7df1e3b7-0437-4b20-9e66-5cbef2a0e906" />
 
+## Requirements
+
+- Python 3.8
+- torch 1.12.1
+- torchvision 0.13.1
+- opencv-python 4.6.0.66
+- kornia 0.5.11
+- numpy 1.21.5
+- Pillow
+- tqdm
+- matplotlib
+
+You can install the main dependencies with:
+
+```bash
+pip install torch==1.12.1 torchvision==0.13.1 opencv-python==4.6.0.66 kornia==0.5.11 numpy==1.21.5 pillow tqdm matplotlib
