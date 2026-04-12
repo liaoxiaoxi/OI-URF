@@ -24,7 +24,7 @@ By Xiaoxi Liao, Kai Wang*, Bailing Wang, Hongke Zhang
 You can install the main dependencies with:
 
 ```bash
-pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 opencv-python==4.13.0.92 kornia==0.6.3 numpy==1.26.4 pillow==10.3.0 tqdm==4.64.1 matplotlib==3.8.2
+pip install torch==2.1.2 torchvision==0.16.2 opencv-python==4.13.0.92 kornia==0.6.3 numpy==1.26.4 pillow==10.3.0 tqdm==4.64.1 matplotlib==3.8.2
 ```
 ## To test
 ```bash
