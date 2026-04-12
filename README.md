@@ -25,10 +25,12 @@ You can install the main dependencies with:
 
 ```bash
 pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 opencv-python==4.13.0.92 kornia==0.6.3 numpy==1.26.4 pillow tqdm matplotlib
-
+```
 ## To test
 ```bash
 python testcolor.py
+```
 ## To train
 ```bash
 python traincolor.py
+```
