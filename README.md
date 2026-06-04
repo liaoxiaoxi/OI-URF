@@ -1,7 +1,7 @@
 # OI-URF
 OI-URF:Unified Multi-Modal Registration and Fusion via Operator-Level Adaptation and Interaction-Guided Alignment
 
-By Xiaoxi Liao, Kai Wang*, Bailing Wang, Hongke Zhang
+By Xiaoxi Liao, Kai Wang*, Wei Jiang, Hongke Zhang
 
 <img width="1582" height="445" alt="方法图 - 副本" src="https://github.com/user-attachments/assets/69c81cc1-6ef1-4fbd-aa46-95ef2bac382d" />
 
