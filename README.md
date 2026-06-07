@@ -40,3 +40,10 @@ python traincolor.py
 The **M3FD** and **RoadScene** datasets used in this work are publicly available. Their download links can be found below:
 - [Google Drive](https://drive.google.com/drive/folders/1H-oO7bgRuVFYDcMGvxstT1nmy0WF_Y_6)
 
+### Harvard Medical Image Fusion Datasets
+
+The PET-MRI, SPECT-MRI, and CT-MRI datasets used in this work are derived from the Harvard Whole Brain Atlas. The original data source can be accessed from:
+
+- [Harvard Whole Brain Atlas](https://www.med.harvard.edu/AANLIB/home.html)
+
+
