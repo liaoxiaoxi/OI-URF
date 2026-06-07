@@ -44,6 +44,6 @@ The **M3FD** and **RoadScene** datasets used in this work are publicly available
 
 The PET-MRI, SPECT-MRI, and CT-MRI datasets used in this work are derived from the Harvard Whole Brain Atlas. The original data source can be accessed from:
 
-- [Harvard Whole Brain Atlas](https://www.med.harvard.edu/AANLIB/home.html)
+- [Harvard Whole Brain Atlas](https://github.com/xianming-gu/Havard-Medical-Image-Fusion-Datasets/tree/main)
 
 
