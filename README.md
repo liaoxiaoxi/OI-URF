@@ -47,3 +47,15 @@ The PET-MRI, SPECT-MRI, and CT-MRI datasets used in this work are derived from t
 - [Harvard Whole Brain Atlas](https://github.com/xianming-gu/Havard-Medical-Image-Fusion-Datasets/tree/main)
 
 
+### Original FLIR Thermal Dataset
+
+The original FLIR thermal dataset used in this work is the official **Teledyne FLIR Thermal Dataset for Algorithm Training**. It provides thermal and visible-spectrum data captured in driving scenarios and is used in our experiments to evaluate the generalization ability of the proposed method on real-world visible-thermal image pairs.
+
+The dataset can be requested from the official Teledyne FLIR page:
+
+- [Original FLIR Thermal Dataset](https://oem.flir.com/solutions/automotive/adas-dataset-form/)
+
+
+
+
+
